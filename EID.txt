@@ -1,0 +1,72 @@
+****WHAT IS EMPOWER ID:
+-> Empower ID is a powerful software solution designed for Identity Governance, Access Management, Single Sign-On (SSO), and Privileged Access Management (PAM). It offers a flexible setup that can be used either as a cloud-based solution (SaaS) or installed on-premise.
+
+What's great about Empower ID is that it's built with modern technology like containers and microservices, which means it’s scalable and adaptable to your needs. Whether you're using it in the cloud or on your own servers, it works the same way.
+
+It’s hosted in Azure for security and to ensure data compliance in various regions. This makes it a reliable solution for businesses that need to stay on top of regulations.
+
+****EMPOWER ID CAPABILITIES:
+-> Empower ID doesn’t just handle your workforce identities. It also manages partners, customers, and even non-human accounts like applications, devices, or bots.
+So whether you're dealing with people or machines, Empower ID ensures that all identities are secure and well-managed.
+
+****IDENTITY GOVERNANCE & ADMINISTRATION:
+-> One key area of Empower ID is Identity Governance & Administration. This focuses on the entire identity lifecycle — from creating, modifying, and managing identities, to ensuring proper access control. it's about making sure the right people (and machines) have the right access at the right time — all from an administrative perspective.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+****EMPOWER ID CONCEPTS:
+-> THE IDENTITY WAREHOUSE: One of the key concepts of Empower ID is its Identity Warehouse, also known as the Identity and Entitlement Warehouse. Think of it as the central hub or database where everything important in Empower ID is stored.
+
+-> WHAT DOES THE IDENTITY WAREHOUSE STORE?: 
+Primary data (like policies and configurations).
+Key Empower ID objects, such as People and Roles.
+Inbox and Outbox queues that manage the flow of detected changes and outbound updates between Empower ID and other systems.
+Inventoried objects and data from external systems connected to Empower ID.
+
+-> ACCOUNT STORES & RESOURCE SYSTEMS: Empower ID connects to external systems, which it refers to as Account Stores and Resource Systems, These are systems outside Empower ID that are integrated into the Identity Warehouse to pull in and store important identity and entitlement data.
+
+****EMPOWER ID COMPONENTS: 
+-> EMPOWER ID COMPONENTS OVERVIEW: When working with Empower ID, you’ll come across a key term: Empower ID Components.
+These components act as a bridge between the Identity Warehouse and the API, exposing the tables, views, and stored procedures for use.
+
+-> WHAT ARE EMPOWER ID COMPONENTS?:
+Programmable objects that represent major SQL tables and views in the system.
+They allow the user interface to interact with data, workflows, and code.
+Enable CRUD operations (Create, Read, Update, Delete) to be performed.
+
+-> EXTENDING THE SCHEMA: 
+When we talk about extending the schema, we mean adding new virtual properties or methods to the components. This allows you to customize and expand the functionality of Empower ID.
+
+-> DISABLED COMPONENTS AND SECURITY: 
+While Empower ID offers a lot of components, many are disabled by default for security reasons and are not available in the user interface or for custom development.
+For example, the Account component (representing the account table) is not accessible via the API, while the more secure AccountView component is.
+
+-> RBAC Objects and Methods: 
+In the schema management UI, components are labeled as RBAC Objects (Role-Based Access Control Objects)
+Each table and view corresponds to an entry in the RBACObject table
+You can also find SQL stored procedures for these components under the RBAC Object Methods tab.
+
+****PERSON VERSUS ACCOUNT:
+-> USER ACCOUNTS IN EMPOWER ID: In EmpowerID, the Person object is used to manage permissions and authentication. Every user must have a Person object to interact with the system. All activities, such as assigning roles and granting access, revolve around this Person object.
+
+-> THE ROLE OF THE PERSON OBJECT: The Person object is central to everything in Empower ID. It handles tasks like role assignments, access control, recertification, and reporting. Employees, partners, and customers can access Empower ID with just a Person object, even if they don’t have other user accounts.
+
+-> EXTERNAL SYSTEMS AND ACCOUNT STORES: Empower ID pulls in user account data from external systems (called Account Stores) to provide a complete security view. These external accounts are stored separately but linked to the Person object for a comprehensive identity management system.
+
+-> COMPLIANCE AND ACCESS MANAGEMENT: Empower ID ensures that access is appropriate for the person, based on their role and business context. To manage this effectively, Accounts and Person objects are always linked, allowing for accurate access control and compliance monitoring.
+
+-> NON-PERSON ACCOUNTS: are for devices, services, and servers. You might create Person objects for non-person accounts if they need to access Empower ID applications or require role-based access.
+
+-> WHEN TO CREATE A PERSON OBJECT FOR NON-PERSON ACCOUNTS: You should create a Person object for non-person accounts if the account needs to log in to Empower ID apps or APIs, if access needs to be managed through the IT Shop, or if you need to assign roles or allow self-service password resets.
+
+-> MANAGING MULTIPLE PERSON OBJECTS FOR ONE IDENTITY: Multiple Person objects can be linked to the same person for different roles (e.g., privileged access accounts). Empower ID uses Core Identity to represent the central identity and manage multiple roles.
+
+-> RESOURCE RESPONSIBILITY: Empower ID tracks responsibility for key objects (e.g., accounts, groups, shared credentials). Responsibilities can be transferred to another person using workflows, especially when someone leaves or changes roles.
+
+
+
+
+
+
+
