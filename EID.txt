@@ -65,6 +65,10 @@ You can also find SQL stored procedures for these components under the RBAC Obje
 -> RESOURCE RESPONSIBILITY: Empower ID tracks responsibility for key objects (e.g., accounts, groups, shared credentials). Responsibilities can be transferred to another person using workflows, especially when someone leaves or changes roles.
 
 
+****RESOURCES AND RESOURCE SYSTEMS
+
+
+
 
 
 
