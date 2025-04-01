@@ -1,0 +1,23 @@
+The EmpowerID system is a complex setup that helps manage and organize digital identities. It works by breaking down tasks into smaller parts (called containers) that can work independently but also communicate with each other. Here's how it works:
+
+1. Containers: These are like separate "boxes" where different tasks run, such as showing the user interface (UI), processing jobs in the background, or handling the database.
+
+2. Job Balancing: The system automatically divides the work between different containers to ensure that everything keeps running smoothly.
+
+3. Heartbeat: Each background job sends a message to the database to confirm it’s still working and can handle requests.
+
+4. Job Claiming: Each container can take on different tasks, depending on what is needed, so no task gets stuck if one part stops working.
+
+5. Queues: Tasks are placed in a queue, so even if the server goes offline, no work is lost. It can be picked up again later.
+
+6. UI: The user interface is always available, and it can adjust the load based on the number of users.
+
+7. Database Mirroring: The database is copied in different places, ensuring it’s always available if one server fails.
+
+8. Microservices: Some parts of EmpowerID work as small, independent services that can be updated and run separately.
+
+9. Azure App Services: These services are hosted on Microsoft Azure, a platform that helps run and manage applications over the internet.
+
+EmpowerID Setup: The system is implemented in three different stages (Development, User Testing, and Production) to ensure everything works properly before going live.
+
+SaaS (Software as a Service): EmpowerID runs on Microsoft Azure, meaning it is scalable (can grow as needed) and always available. This setup makes sure everything is secure, fast, and works without issues.
