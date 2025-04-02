@@ -48,24 +48,29 @@ Each table and view corresponds to an entry in the RBACObject table
 You can also find SQL stored procedures for these components under the RBAC Object Methods tab.
 
 ****PERSON VERSUS ACCOUNT:
--> USER ACCOUNTS IN EMPOWER ID: In EmpowerID, the Person object is used to manage permissions and authentication. Every user must have a Person object to interact with the system. All activities, such as assigning roles and granting access, revolve around this Person object.
+In every IT system, there is something called a user account. This user account is used to control what someone can do in the system (permissions) and to verify who they are (authentication). In EmpowerID, the user account is called a Person object, and it is stored in a table called the Person table.
 
--> THE ROLE OF THE PERSON OBJECT: The Person object is central to everything in Empower ID. It handles tasks like role assignments, access control, recertification, and reporting. Employees, partners, and customers can access Empower ID with just a Person object, even if they don’t have other user accounts.
+Whenever anyone wants to use EmpowerID, they need a Person object. All the activities in EmpowerID, like assigning roles, giving access, checking access, and making sure everything is secure, revolve around this Person object. This means that whether it's an employee, partner, or customer, they only need a Person object to use EmpowerID, even if they don’t have other user accounts.
 
--> EXTERNAL SYSTEMS AND ACCOUNT STORES: Empower ID pulls in user account data from external systems (called Account Stores) to provide a complete security view. These external accounts are stored separately but linked to the Person object for a comprehensive identity management system.
+EmpowerID helps manage and track security by giving an overall view of who has access to what across the organization's IT systems, both in the office (on-premise) and in the cloud. To do this, EmpowerID pulls user accounts from external systems (like other IT tools) into a table called the Account table. These external systems are called Account Stores.
 
--> COMPLIANCE AND ACCESS MANAGEMENT: Empower ID ensures that access is appropriate for the person, based on their role and business context. To manage this effectively, Accounts and Person objects are always linked, allowing for accurate access control and compliance monitoring.
+A big job of EmpowerID is to make sure that access given to people is compliant, which means it follows the organization’s rules and policies to keep things secure. The access should make sense based on who the person is, their job role, and other details. So, to manage this properly, EmpowerID links these Accounts (from external systems) with the Person object so they can be viewed and managed as one complete unit.
 
--> NON-PERSON ACCOUNTS: are for devices, services, and servers. You might create Person objects for non-person accounts if they need to access Empower ID applications or require role-based access.
+Multiple Person Objects for One Person: If a person has multiple accounts (like admin access), EmpowerID links them with Core Identity, which represents the main identity. Only the Person can log in.
 
--> WHEN TO CREATE A PERSON OBJECT FOR NON-PERSON ACCOUNTS: You should create a Person object for non-person accounts if the account needs to log in to Empower ID apps or APIs, if access needs to be managed through the IT Shop, or if you need to assign roles or allow self-service password resets.
-
--> MANAGING MULTIPLE PERSON OBJECTS FOR ONE IDENTITY: Multiple Person objects can be linked to the same person for different roles (e.g., privileged access accounts). Empower ID uses Core Identity to represent the central identity and manage multiple roles.
-
--> RESOURCE RESPONSIBILITY: Empower ID tracks responsibility for key objects (e.g., accounts, groups, shared credentials). Responsibilities can be transferred to another person using workflows, especially when someone leaves or changes roles.
+Managing Responsibility: EmpowerID assigns responsible parties to key objects like accounts and roles. If someone leaves, you can transfer their responsibilities.
 
 
 ****RESOURCES AND RESOURCE SYSTEMS
+
+****ACCOUNTS STORES AND SECURITY BOUNDARIES:
+EmpowerID helps track which accounts and groups have access to resources across different systems. Usually, accounts and groups are in the same system, but for systems like Microsoft Exchange or Active Directory, accounts and groups might be in different systems. For example, mailboxes are in the Exchange system, but user accounts and groups are in Active Directory.
+
+EmpowerID keeps track of this by linking these systems in a special table called the AccountStore table. This table shows that these systems have security data that can control access to other resources.
+
+In cases like Microsoft Exchange, where mailboxes can be accessed by accounts from multiple Active Directory domains, EmpowerID has to understand which accounts can access which mailboxes. To manage this, EmpowerID uses a SecurityBoundary table. This table links accounts from different Active Directory domains and resource systems, based on trust relationships.
+
+Each Security Boundary represents a specific set of accounts that belong to a certain domain or system. The Security BoundaryType keeps track of how EmpowerID connects to these systems to manage, update, or delete accounts.
 
 
 
