@@ -1,23 +1,59 @@
 The EmpowerID system is a complex setup that helps manage and organize digital identities. It works by breaking down tasks into smaller parts (called containers) that can work independently but also communicate with each other. Here's how it works:
-
 1. Containers: These are like separate "boxes" where different tasks run, such as showing the user interface (UI), processing jobs in the background, or handling the database.
-
 2. Job Balancing: The system automatically divides the work between different containers to ensure that everything keeps running smoothly.
-
 3. Heartbeat: Each background job sends a message to the database to confirm it’s still working and can handle requests.
-
 4. Job Claiming: Each container can take on different tasks, depending on what is needed, so no task gets stuck if one part stops working.
-
 5. Queues: Tasks are placed in a queue, so even if the server goes offline, no work is lost. It can be picked up again later.
-
 6. UI: The user interface is always available, and it can adjust the load based on the number of users.
-
 7. Database Mirroring: The database is copied in different places, ensuring it’s always available if one server fails.
-
 8. Microservices: Some parts of EmpowerID work as small, independent services that can be updated and run separately.
-
 9. Azure App Services: These services are hosted on Microsoft Azure, a platform that helps run and manage applications over the internet.
-
 EmpowerID Setup: The system is implemented in three different stages (Development, User Testing, and Production) to ensure everything works properly before going live.
-
 SaaS (Software as a Service): EmpowerID runs on Microsoft Azure, meaning it is scalable (can grow as needed) and always available. This setup makes sure everything is secure, fast, and works without issues.
+
+
+****CONTAINER AND MICROSERVICES
+------------------------------------------------
+1. EmpowerID Worker Containers:- are parts of a system that handle important background tasks like managing security, syncing data, and running internal services. These containers do not interact with users directly. They focus on behind-the-scenes work like:
+	- Managing security (RBAC – Role-Based Access Control)
+	- Processing inventory and resources
+	- Enforcing permissions and rights
+The number and size of these containers depend on how many applications and processes need to be managed.
+Some key details:
+	- They don't accept incoming connections, so they don’t need to listen for requests or use secure connections (SSL).
+	- They need a program called IIS (Internet Information Services) to help run the EmpowerID Web Service Garden, which handles the worker tasks.
+	- Their main jobs include running tasks like:
+		- Managing security settings (RBAC).
+		- Processing inventory.
+		- Managing resource permissions.
+		- Enforcing rights.
+These worker containers are similar to the on-premise Worker Role Service used in older setups, doing similar tasks in a cloud environment.
+
+2. EmpowerID UI Containers: are the part of the system that handle the user-facing side of the application. They manage the web pages and any actions or workflows that users start when they interact with the system.
+Here are the key points:
+	- User Interface (UI): These containers display the web pages and perform tasks that users trigger, like clicking buttons or starting workflows.
+	- Secure Access: By default, all web resources are accessed securely through HTTPS, and the UI doesn’t keep track of previous user actions (it's "stateless").
+	- Similar to older systems: The UI container role works like the old on-premise Web Role Service but in a cloud setup.
+Key Details:
+- No inbound connections: The UI containers don’t accept incoming connections, so they don’t listen on a port or need SSL connections.
+- Services provided:
+	- Workflow management (handling user actions).
+	- Event publication and subscriptions (sending out and receiving important events).
+	- Heartbeat monitoring (checking if everything is running).
+	- Alert processing (handling alerts and notifications).
+In short, these containers focus on what the user sees and interacts with, running all the necessary processes that happen when a user uses the system.
+
+
+
+3. The EmpowerID API Gateway / Reverse Proxy:- helps users access an organization’s web applications securely. It provides single sign-on (so users only need to log in once) and ensures users are authorized to use the web applications.
+Here’s how it works:
+	- Reverse Proxy: This service stands between the user and the web applications. It handles user requests and forwards them to the right place.
+	- API Gateway: It helps manage and secure access to the different services and data that the user might need.
+The system uses Docker Containers to run the API Gateway and Reverse Proxy. These containers can work together in environments like Docker Swarm or Kubernetes (tools for managing containers).
+For on-premise customers, using this system to protect EmpowerID is free.
+In short, the API Gateway/Reverse Proxy helps users securely access web applications, making sure they are logged in and allowed to use the services.
+
+
+
+****ON-PRMISE COMPONENTS
+------------------------------------------
