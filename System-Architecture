@@ -57,3 +57,47 @@ In short, the API Gateway/Reverse Proxy helps users securely access web applicat
 
 ****ON-PRMISE COMPONENTS
 ------------------------------------------
+Required for Management of On-Premise Systems
+---------------------------------------------
+	- The Remote Identity Provider (IdP) helps users in different or less-trusted networks log in to EmpowerID securely using their Active Directory (AD) accounts. So, if a partner or customer has their own directory (like AD), they can still let their users access EmpowerID without needing to create new accounts in EmpowerID.
+
+What it does:
+	
+	- Set Up on Web Server: The Remote IdP is installed on a web server in the partner’s or customer’s network (this can be a network that is not fully trusted or remote).
+
+	- User Login: When a user tries to log in to EmpowerID, they can choose the Remote IdP (instead of logging in directly to EmpowerID).
+
+	- Redirects to Remote Network: EmpowerID sends them to the remote web server where they can log in using their Active Directory username and password.
+
+	- Authentication: The Remote IdP checks the user’s details in their own Active Directory.
+
+	- Login Success: If the details are correct, the Remote IdP sends a message back to EmpowerID, saying the user is authorized to use the system.
+
+	- Auto-Registration: EmpowerID can then automatically create an account for that user based on the information they used to log in.
+
+In simple terms:
+
+	- This system allows people in different, trusted, or remote networks to log in to EmpowerID using their existing company accounts, without needing to create new accounts in EmpowerID. It makes it easier for users to access EmpowerID while keeping everything secure and linked to their existing directories.
+	
+Client Tools
+------------
+
+The Windows Credential Provider is a tool called JINA that works with Windows 10 and Windows Server. It helps users reset their password easily by using EmpowerID's Password Reset Center. Here’s how it works:
+	- Password Reset: When a user presses Ctrl + Alt + Delete to log in to Windows, they can click a link to reset their password.
+	- Embedded Browser: This link opens a small browser window inside Windows where the user can start the password reset process.
+	- Authentication: The user may need to answer security questions or use another form of authentication (like multi-factor authentication).
+	- Resetting the Password: Once the user successfully resets their password, it updates both in EmpowerID and Active Directory (if linked with Active Directory).
+	-Login with New Password: After the reset, the user is sent back to the Windows login screen to log in with their new password.
+In simple terms, this tool allows users to reset their passwords easily from the Windows login screen using EmpowerID, even if they’ve forgotten their password.
+
+
+Privileged Application Launcher
+----------------------------------------
+The EmpowerID Privileged Application Launcher is a tool that you can install on a Windows 10 workstation connected to a domain. It helps you run applications with special, secure credentials (called vaulted credentials) from the EmpowerID Privileged Access System.
+Here’s how it works:
+	- Vaulted Credentials: When you want to run applications that need admin access (like SQL Server Management Studio or other system tools), you can use vaulted credentials stored securely in EmpowerID. These are like stored, safe login details for admin accounts.
+	- Right-Click Menu: Normally, when you right-click on an app, you can choose to run it as a different user by entering the user’s credentials. But with the Privileged Application Launcher, there’s a new option that says "Run with EmpowerID".
+	- Using Vaulted Credentials: When you choose this option, it lets you pick from the vaulted credentials stored in EmpowerID. You can then enter your master password, and EmpowerID will use the selected credential to run the application with the required admin rights.
+	- Secure Credential Management: This tool ensures that all your credentials are safely managed within EmpowerID, following strict controls and rules about who can access them.
+In short:
+	- The Privileged Application Launcher makes it easier and safer to run applications that need special access by using securely stored credentials, so you don’t have to manually enter them every time. It integrates tightly with EmpowerID, keeping everything secure and well-managed.
