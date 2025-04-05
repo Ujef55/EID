@@ -101,3 +101,94 @@ Here’s how it works:
 	- Secure Credential Management: This tool ensures that all your credentials are safely managed within EmpowerID, following strict controls and rules about who can access them.
 In short:
 	- The Privileged Application Launcher makes it easier and safer to run applications that need special access by using securely stored credentials, so you don’t have to manually enter them every time. It integrates tightly with EmpowerID, keeping everything secure and well-managed.
+
+
+Cloud Gateway
+-------------
+The Cloud Gateway is like a bridge that connects your company's internal network to the EmpowerID Cloud securely. It helps EmpowerID manage your on-premise (local) systems without needing to open special firewall ports.
+How it works:
+	- You install the Cloud Gateway on a Windows computer in your company’s network.
+	- It creates a security key (a certificate) to make sure communication is safe
+	- It connects to the EmpowerID Cloud using a secure HTTPS (TLS) connection.
+	- No need to open firewall ports, so your system stays secure.
+	- Multiple Gateways can be installed to make sure everything runs smoothly.
+	
+Cloud Gateway Communication
+---------------------------
+
+Step-by-Step Process
+	1 - Create a Special User (EmpowerID Person)
+		- Before installing the Cloud Gateway Client, you need a special user account in EmpowerID.
+		- This user will register and manage the Cloud Gateway Client.
+		- Assign to that Person the UI-Admin-Cloud-Gateway Management Role
+	2 - Register the Cloud Gateway Client
+		- Install the Cloud Gateway Client on your server.
+		- Use the special user account from Step 1 to register it with EmpowerID.
+		- If registration is successful:
+			- A security certificate is generated and stored on the server.
+			- A public key is sent to EmpowerID to allow secure communication.
+	3 - Client Calls EmpowerID
+		- The Cloud Gateway Client contacts EmpowerID to get connection details for Azure.
+	4 - Client Connects to Azure
+		- The Cloud Gateway Client uses the information received from EmpowerID to connect to an Azure queue.
+	5- EmpowerID Connects to Azure
+		- EmpowerID also connects to the same Azure queue, creating a secure communication link between the Cloud Gateway Client and EmpowerID.
+		- All communication is protected using TLS encryption.
+
+
+EmpowerID Server Roles
+----------------------
+
+Understanding EmpowerID Server Roles in Simple Words:-
+Think of the EmpowerID system as a big team with two main types of workers:
+	- Front-End Servers (UI Containers) – Like the customer service team in a company.
+	- Back-End Servers (Worker Containers) – Like the factory workers who do heavy processing behind the scenes.
+What Does Each Server Do?
+	🔵 Front-End Servers (UI Containers) – The "Customer Service Team"
+		✔️ These servers handle web pages and user interactions.
+		✔️ They support workflow processes (like approvals, requests, and user logins).
+		✔️ They connect to different systems to get data quickly.
+	🟢 Back-End Servers (Worker Containers) – The "Factory Workers"
+		✔️ These servers do background tasks that take a long time.
+		✔️ They handle security checks, automation, and inventory management.
+		✔️ They enforce policies and make sure everything runs smoothly.
+What Happens If One Server Fails?
+	✔️ The same job or task can run on multiple servers.
+	✔️ If one server stops working, other servers will continue the work.
+	✔️ This is called load balancing and failover, which keeps the system running without problems.
+A Simple Example:-
+	Imagine an online store like Amazon:
+		✔️ The Front-End Server is like the website that customers use to browse and place orders.
+		✔️ The Back-End Server is like the warehouse where workers pack and ship items.
+If one warehouse (Back-End Server) closes for the day, other warehouses will continue processing orders.
+Key Takeaways
+	✅ Front-End Servers handle user interactions and workflows.
+	✅ Back-End Servers process long-running tasks like security and automation.
+	✅ Jobs can run on multiple servers for better performance and backup.
+	✅ If one server fails, others take over so the system never stops working.	
+	
+------------------------
+Understanding Permanent Workflows in Simple Terms
+A permanent workflow is like an automated worker that keeps running all the time based on business needs. It follows a fixed schedule and does important tasks in the background.
+How Permanent Workflows Work in EmpowerID
+1️⃣ Only One at a Time – A permanent workflow can only run on one worker server (back-end server) at a time.
+2️⃣ Pre-Built & Custom Workflows – EmpowerID comes with ready-made permanent workflows, but you can also create your own in Workflow Studio.
+3️⃣ Default Settings – If no special configuration is set, EmpowerID uses default settings for each workflow.
+4️⃣ Viewing & Managing Workflows –
+You can find all permanent workflows in the EmpowerID system.
+To do this, go to:
+Infrastructure Admin > EmpowerID Servers and Settings > Permanent Workflows
+Click on the workflow name to see details on the "View One" page.
+Simple Example
+Imagine a security camera system in a shopping mall:
+The camera is always running, monitoring activity continuously.
+It is set to record based on a schedule (e.g., 24/7 or only at night).
+Only one camera operator can manage a specific live feed at a time.
+If settings are not changed, the camera follows default settings (e.g., motion detection ON).
+This is how permanent workflows work in EmpowerID—they run non-stop, handling important tasks like security, data processing, and policy enforcement.
+Key Takeaways
+✅ Runs continuously based on business needs.
+✅ Only one instance of a workflow runs at a time.
+✅ Comes with pre-built workflows, but you can create custom ones.
+✅ Uses default settings unless changed.
+✅ Can be viewed & managed in EmpowerID’s Permanent Workflows page.
