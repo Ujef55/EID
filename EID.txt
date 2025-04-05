@@ -35,6 +35,12 @@ Programmable objects that represent major SQL tables and views in the system.
 They allow the user interface to interact with data, workflows, and code.
 Enable CRUD operations (Create, Read, Update, Delete) to be performed.
 
+In EID UI labels components as RBAC objects. This is because there is an entry for every table and view, aka “component” in the RBACObject table
+
+in RBAC objects there is tables and views. and RBACObjectsMethod table stores store procedures.
+RBACObjectsAttribute table stores column names.
+
+
 -> EXTENDING THE SCHEMA: 
 When we talk about extending the schema, we mean adding new virtual properties or methods to the components. This allows you to customize and expand the functionality of Empower ID.
 
@@ -49,6 +55,8 @@ You can also find SQL stored procedures for these components under the RBAC Obje
 
 ****PERSON VERSUS ACCOUNT:
 In every IT system, there is something called a user account. This user account is used to control what someone can do in the system (permissions) and to verify who they are (authentication). In EmpowerID, the user account is called a Person object, and it is stored in a table called the Person table.
+
+Accounts are from external system and person objects are primary identity from Empower ID system. Account stores is an external system containing the users accounts.
 
 Whenever anyone wants to use EmpowerID, they need a Person object. All the activities in EmpowerID, like assigning roles, giving access, checking access, and making sure everything is secure, revolve around this Person object. This means that whether it's an employee, partner, or customer, they only need a Person object to use EmpowerID, even if they don’t have other user accounts.
 
